@@ -1,4 +1,9 @@
-# Django settings for django_dropbox_project project.
+# Django settings for django_imgur_project project.
+import os
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'w!o8h%wvjf66y*epdwbd&qk=tcadb&(&vt7k7%6_x#7tkia2my'
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -100,7 +105,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'django_dropbox_project.urls'
+ROOT_URLCONF = 'django_imgur_project.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -119,8 +124,8 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    'django_dropbox',
-    'dropbox_testing',
+    'django_imgur',
+    'imgur_testing',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -128,23 +133,28 @@ INSTALLED_APPS = (
 # the site admins on every HTTP 500 error.
 # See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'mail_admins': {
-            'level': 'ERROR',
-            'class': 'django.utils.log.AdminEmailHandler'
-        }
-    },
-    'loggers': {
-        'django.request': {
-            'handlers': ['mail_admins'],
-            'level': 'ERROR',
-            'propagate': True,
-        },
-    }
-}
+#LOGGING = {
+#    'version': 1,
+#    'disable_existing_loggers': False,
+#    'handlers': {
+#        'console': {
+#            'level': 'DEBUG',
+#            'class': 'logging.StreamHandler'
+#        }
+#    },
+#    'loggers': {
+#        'django.request': {
+#            'handlers': ['console'],
+#            'level': 'DEBUG',
+#            'propagate': True,
+#        },
+#    }
+#}
+import logging
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s %(levelname)s %(message)s',
+)
 
 try:
     from local_settings import *

@@ -1,13 +1,13 @@
-#import os
 from django.core.files.base import ContentFile
 from django.test import TestCase
-from django_dropbox.storage import DropboxStorage
+from django_imgur.storage import ImgurStorage
 
-class DropboxStorageTest(TestCase):
+
+class ImgurStorageTest(TestCase):
 
     def setUp(self):
         self.location = '/Public/testing'
-        self.storage = DropboxStorage(location=self.location)
+        self.storage = ImgurStorage(location=self.location)
         self.storage.base_url = '/test_media_url/'
 
     def test_file_access_options(self):

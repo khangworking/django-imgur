@@ -1,5 +1,5 @@
 from django.contrib import admin
-from dropbox_testing.models import Person
+from imgur_testing.models import Person
 
 class PersonAdmin(admin.ModelAdmin):
     list_display = ('image',)

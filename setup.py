@@ -6,15 +6,15 @@ from setuptools import setup
 def get_packages():
     # setuptools can't do the job :(
     packages = []
-    for root, dirnames, filenames in os.walk('django_dropbox'):
+    for root, dirnames, filenames in os.walk('django_imgur'):
         if '__init__.py' in filenames:
             packages.append(".".join(os.path.split(root)).strip("."))
 
     return packages
 
-requires = ['dropbox>=2.0.0']
+requires = ['imgurpython']
 
-setup(name='django-dropbox',
+setup(name='django-imgur',
     version=version,
     description='A Django App that contains a Django Storage which uses Dropbox.',
     author=u'Andres Torres Marroquin',
