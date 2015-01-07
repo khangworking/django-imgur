@@ -1,5 +1,4 @@
 from django.core.management.base import NoArgsCommand
-from dropbox import rest, session
 from django_imgur.settings import CONSUMER_ID, CONSUMER_SECRET
 from imgurpython import ImgurClient
 
