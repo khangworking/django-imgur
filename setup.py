@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import os
-from django_dropbox import version
+from django_imgur import version
 from setuptools import setup
 
 def get_packages():
