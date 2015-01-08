@@ -1,9 +1,4 @@
-import errno
 import os.path
-import re
-import urlparse
-import urllib
-import itertools
 import base64
 try:
     from cStringIO import StringIO
@@ -42,7 +37,6 @@ class ImgurStorage(Storage):
         logger.info("Logged in Imgur storage")
         self.account_info = self.client.get_account(USERNAME)
         self.albums = self.client.get_account_albums(USERNAME)
-        logger.info(self.albums)
         self.location = location
         self.base_url = 'https://api.imgur.com/3/account/{url}/'.format(url=self.account_info.url)
 
@@ -62,8 +56,7 @@ class ImgurStorage(Storage):
         if not self.exists(directory) and directory:
             album = self.client.create_album({"title": directory})
             self.albums = self.client.get_account_albums(USERNAME)
-        else:
-            album = [a for a in self.albums if a.title == directory][0]
+        album = [a for a in self.albums if a.title == directory][0]
         #if not response['is_dir']:
         #     raise IOError("%s exists and is not a directory." % directory)
         response = self._client_upload_from_fd(content, {"album": album.id, "name": name, "title": name}, False)
@@ -94,11 +87,18 @@ class ImgurStorage(Storage):
         if len([a for a in self.albums if a.title == name]) > 0:
             return True
         try:
+            album = [a for a in self.albums if a.title == os.path.dirname(name)][0]
+            images = self.client.get_album_images(album.id)
             metadata = self.client.get_image(name)
+            if len([im for im in images if im.name == name]) > 0:
+                logger.info(dir(metadata))
+                return True
         except ImgurClientError as e:
             if e.status_code == 404: # not found
                 return False
             raise e
+        except IndexError as e:
+            return False
         else:
             return True
         return False
