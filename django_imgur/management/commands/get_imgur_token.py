@@ -11,7 +11,7 @@ class Command(NoArgsCommand):
 
         url = client.get_auth_url('pin')
         print "Url:", url
-        print "Please visit this website and press the 'Allow' button, then hit 'Enter' here."
+        print "Please visit this website and press the 'Allow' button, then paste the PIN code you receive from Imgur."
         pin = raw_input().strip()
 
         # This will fail if the user didn't visit the above URL and hit 'Allow'
