@@ -1,12 +1,12 @@
-from django.core.management.base import NoArgsCommand
+from django.core.management.base import BaseCommand
 from django_imgur.settings import CONSUMER_ID, CONSUMER_SECRET
 from imgurpython import ImgurClient
 
-class Command(NoArgsCommand):
+class Command(BaseCommand):
     """ Before using this command, the application need to be registered
         by an imgur user. See https://api.imgur.com/oauth2 """
 
-    def handle_noargs(self, *args, **options):
+    def handle(self, *args, **options):
         client = ImgurClient(CONSUMER_ID, CONSUMER_SECRET)
 
         url = client.get_auth_url('pin')
