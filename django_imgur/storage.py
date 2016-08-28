@@ -8,6 +8,7 @@ from django.core.cache import cache
 from django.core.files import File
 from django.core.files.storage import Storage
 from django.utils.encoding import filepath_to_uri
+from django.utils.deconstruct import deconstructible
 import requests
 
 from imgurpython import ImgurClient
@@ -23,6 +24,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
+@deconstructible
 class ImgurStorage(Storage):
     """
     A storage class providing access to resources in a Dropbox Public folder.
