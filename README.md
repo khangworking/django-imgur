@@ -50,4 +50,11 @@ add to your models
         # ...
         photo = models.ImageField(upload_to='photos', storage=STORAGE, null=True, blank=True)
 
+Make migrations and migrate
 
+    $ python manage.py makemigrations
+    $ python manage.py migrate
+    
+Now add to templates
+
+    <img src="{{ mymodel.photo.url }}">
