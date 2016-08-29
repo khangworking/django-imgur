@@ -8,6 +8,7 @@ from django.core.cache import cache
 from django.core.files import File
 from django.core.files.storage import Storage
 from django.utils.encoding import filepath_to_uri
+from django.utils.deconstruct import deconstructible
 import requests
 
 from imgurpython import ImgurClient
@@ -23,6 +24,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
+@deconstructible
 class ImgurStorage(Storage):
     """
     A storage class providing access to resources in a Dropbox Public folder.
@@ -145,7 +147,7 @@ class ImgurStorage(Storage):
 
         return url
 
-    def get_available_name(self, name):
+    def get_available_name(self, name, max_length=None):
         """
         Returns a filename that's free on the target storage system, and
         available for new content to be written to.

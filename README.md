@@ -38,3 +38,23 @@ after that run:
     $ python manage.py get_imgur_token
 
 And follow up on screen instructions, finally set the `IMGUR_ACCESS_TOKEN` and `IMGUR_USERNAME` in `settings.py`
+
+add to your models
+
+    from django.db import models
+    from django_imgur.storage import ImgurStorage
+    
+    STORAGE = ImgurStorage()
+
+    class MyModel(models.Model):
+        # ...
+        photo = models.ImageField(upload_to='photos', storage=STORAGE, null=True, blank=True)
+
+Make migrations and migrate
+
+    $ python manage.py makemigrations
+    $ python manage.py migrate
+    
+Now add to templates
+
+    <img src="{{ mymodel.photo.url }}">
