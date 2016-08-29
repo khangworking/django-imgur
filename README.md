@@ -10,7 +10,7 @@ Inspired, based, and forked from [django-dropbox](https://github.com/andres-torr
 
 ## First of all
 
-    pip install -e git+http://github.com/leofiore/django-imgur#egg=django-imgur
+    pip install -e git+http://github.com/northscope/django-imgur#egg=django-imgur
 
 ## Add it to your Django Project
 
